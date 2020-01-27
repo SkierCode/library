@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'ru.itstudy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://repository.primefaces.org'
+    }
+    
+}
+
+configurations {
+    providedRuntime
+
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa:+')
+    implementation('org.springframework.boot:spring-boot-starter-web:+')
+    implementation('org.springframework.boot:spring-boot-starter-security:+')
+    implementation("org.springframework.boot:spring-boot-starter-actuator:+")
+    implementation("org.springframework.boot:spring-boot-starter-aop:+")
+
+    implementation 'org.projectlombok:lombok:+'
+    implementation 'com.google.guava:guava:+'
+
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+    providedCompile 'javax:javaee-api:7.0' // в GlassFish (Payara) уже есть эта библиотека, поэтому добавляем только для компиляции
+    
+    
+    //FrontEnd
+    implementation 'org.primefaces:primefaces:6.0'
+    implementation group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+    implementation 'org.omnifaces:omnifaces:2.5.1'
+    implementation 'net.bootsfaces:bootsfaces:1.0.0'
+
+    implementation 'commons-io:commons-io:+'// для загрузки файлов в приложении
+    implementation 'commons-fileupload:commons-fileupload:+'
+
+    implementation('org.primefaces.themes:bootstrap:1.0.10')
+}
+
